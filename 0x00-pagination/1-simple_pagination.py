@@ -35,7 +35,8 @@ class Server:
             set_data = self.dataset()
             new_data = len(set_data)
             index, last = index_range(page, page_size)
-            return self.dataset()[index:last]
             if index > new_data:
                  return []
+            return self.dataset()[index:last]
+                 
             
