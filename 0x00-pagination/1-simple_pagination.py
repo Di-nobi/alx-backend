@@ -30,6 +30,7 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+            """Checks if page and page size is an integer and then return the dataset of the arguments"""
             assert type(page) is int and page > 0
             assert type(page_size) is int and page_size > 0
             set_data = self.dataset()
