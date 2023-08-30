@@ -16,7 +16,7 @@ app.config.from_object(Config)
 
 
 
-app.route('/', strict_slashes=False)
+@app.route('/', strict_slashes=False)
 def index():
     """Index of a file"""
     return render_template('2-index.html')
