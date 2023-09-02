@@ -14,8 +14,6 @@ app = Flask(__name__)
 babel = Babel(app)
 app.config.from_object(Config)
 
-
-
 @app.route('/', strict_slashes=False)
 def index():
     """Index of a file"""
@@ -24,9 +22,7 @@ def index():
 @babel.localeselector
 def get_locale():
     """Gets the locale selector"""
-    num = request.args.get('locale')
-    if num in app.config['LANGUAGES']:
-        return num
+    return 'fr'
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 if __name__ == "__main__":
     app.run(port='5000', host='0.0.0.0', debug=True)
