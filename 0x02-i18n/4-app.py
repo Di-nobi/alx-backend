@@ -9,6 +9,7 @@ class Config(object):
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
+    #BABEL_LOCALE_SELECTOR = get_locale
     
 app = Flask(__name__)
 babel = Babel(app)
@@ -17,12 +18,14 @@ app.config.from_object(Config)
 @app.route('/', strict_slashes=False)
 def index():
     """Index of a file"""
-    return render_template('2-index.html')
+    return render_template('4-index.html')
 
 @babel.localeselector
 def get_locale():
     """Gets the locale selector"""
-    return 'fr'
+    find_locale = request.args.get('locale')
+    if find_locale in app.config['LANGUAGES']:
+        return find_locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 if __name__ == "__main__":
     app.run(port='5000', host='0.0.0.0', debug=True)

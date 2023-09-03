@@ -3,12 +3,11 @@
 from flask_babel import Babel
 from flask import Flask, request
 from flask import render_template
-from flask_babel import gettext
+#from flask_babel import _
 
-class Config(object):
+class Config():
     """Class Configuration"""
     LANGUAGES = ["en", "fr"]
-    LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
     
@@ -21,7 +20,7 @@ app.config.from_object(Config)
 @app.route('/', strict_slashes=False)
 def index():
     """Index of a file"""
-    return render_template('3-index.html')
+    return render_template('3-index.html', get_locale=get_locale)
 
 @babel.localeselector
 def get_locale():
