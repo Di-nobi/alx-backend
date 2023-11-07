@@ -43,19 +43,20 @@ class Server:
         """Returning a dictionary"""
         assert type(index) == int and index >= 0
         assert type(page_size) == int and page_size >= 0
+        assert index <= len(self.indexed_dataset())
         dataset = self.indexed_dataset()
         data = list()
         move = index + page_size
-        while index < move:
-            if index in dataset.keys():
-                data.append(dataset[index])
+        count = index
+        while count < move:
+            if count in dataset.keys():
+                data.append(dataset[count])
             else:
                 move += 1
-            index += 1
-        datas = {
+            count += 1
+        return {
             'index': index,
-            'next_index': move,
+            'data': data,
             'page_size': page_size,
-            'data': data, 
+            'next_index': move
         }
-        return datas
