@@ -25,6 +25,6 @@ class LRUCache(BaseCaching):
         """Gets an item from the cache"""
         if key is None or key not in self.cache_data:
             return None
-        self.queue.remove(key)
-        self.queue.append(key)
+        #self.queue.remove(key)
+        #self.queue.append(key)
         return self.cache_data[key]
